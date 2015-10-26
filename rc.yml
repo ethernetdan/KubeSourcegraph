@@ -20,14 +20,11 @@ spec:
         - name: config
           mountPath: /home/sourcegraph/.sourcegraph
         ports:
-        - name: http
-          containerPort: 3000
+        - containerPort: 3000
           protocol: TCP
-        - name: https
-          containerPort: 3001
+        - containerPort: 3001
           protocol: TCP 
-        - name: grpc
-          containerPort: 3100
+        - containerPort: 3100
           protocol: TCP 
       volumes:
       - name: data
@@ -38,6 +35,5 @@ spec:
         gcePersistentDisk:
           pdName: sourcegraph-config
           fsType: "ext4"
-      restartPolicy: OnFailure
+      restartPolicy: Always
       pullPolicy: Always
-      dnsPolicy: ClusterFirst

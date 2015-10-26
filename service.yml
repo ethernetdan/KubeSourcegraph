@@ -6,12 +6,15 @@ spec:
   selector:
     app: sourcegraph
   ports:
-  - protocol: TCP
+  - name: http
+    protocol: TCP
     port: 80
     targetPort: 3000
-  - protocol: TCP
+  - name: https
+    protocol: TCP
     port: 443
     targetPort: 3001
-  - protocol: TCP
+  - name: grpc
+    protocol: TCP
     port: 3100
   type: LoadBalancer
