@@ -53,6 +53,7 @@ There are several [configuration options](https://src.sourcegraph.com/sourcegrap
 Use the IP discovered above as Endpoint.
 
 **Note:** If you are setting up a domain to host Sourcegraph, point the A record to the IP above and set Endpoint below to the domain.
+**Note:** If you are using port 80 do not include ":80"
 ```
 AppURL = http://<Endpoint>
 ```
