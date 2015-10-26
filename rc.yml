@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: sourcegraph
+spec:
+  replicas: 1
+  selector:
+    app: sourcegraph
+  template:
+    metadata:
+      labels:
+        app: sourcegraph
+    spec:
+      containers:
+      - name: src
+        image: sourcegraph/sourcegraph:latest
+        volumeMounts:
+        - name: data
+          mountPath: /etc/sourcegraph
+        - name: config
+          mountPath: /home/sourcegraph/.sourcegraph
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        - name: https
+          containerPort: 3001
+          protocol: TCP 
+        - name: grpc
+          containerPort: 3100
+          protocol: TCP 
+      volumes:
+      - name: data
+        gcePersistentDisk:
+          pdName: sourcegraph-data
+          fsType: "ext4"
+      - name: config
+        gcePersistentDisk:
+          pdName: sourcegraph-config
+          fsType: "ext4"
+      restartPolicy: OnFailure
+      pullPolicy: Always
+      dnsPolicy: ClusterFirst
