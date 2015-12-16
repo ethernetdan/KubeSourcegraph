@@ -20,12 +20,13 @@ spec:
         - name: config
           mountPath: /home/sourcegraph/.sourcegraph
         ports:
-        - containerPort: 3000
+        - containerPort: 3080
           protocol: TCP
-        - containerPort: 3001
+        - containerPort: 3443
           protocol: TCP 
         - containerPort: 3100
           protocol: TCP 
+        imagePullPolicy: Always
       volumes:
       - name: data
         gcePersistentDisk:
@@ -36,4 +37,3 @@ spec:
           pdName: sourcegraph-config
           fsType: "ext4"
       restartPolicy: Always
-      pullPolicy: Always

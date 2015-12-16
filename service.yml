@@ -9,11 +9,11 @@ spec:
   - name: http
     protocol: TCP
     port: 80
-    targetPort: 3000
+    targetPort: 3080
   - name: https
     protocol: TCP
     port: 443
-    targetPort: 3001
+    targetPort: 3443
   - name: grpc
     protocol: TCP
     port: 3100
